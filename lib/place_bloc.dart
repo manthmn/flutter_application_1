@@ -1,46 +1,37 @@
 import 'package:equatable/equatable.dart';
+import 'package:flutter_application_1/bus_arrival.dart';
+import 'package:flutter_application_1/nearby_stops.dart';
+import 'package:flutter_application_1/tfl_repository.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-/// Events
-abstract class PlaceEvent extends Equatable {
-  const PlaceEvent();
+part 'place_event.dart';
+part 'place_state.dart';
 
-  @override
-  List<Object> get props => [];
-}
-
-class FetchPlaces extends PlaceEvent {}
-
-/// States
-abstract class PlaceState extends Equatable {
-  const PlaceState();
-
-  @override
-  List<Object> get props => [];
-}
-
-class PlaceInitial extends PlaceState {}
-
-class PlaceLoading extends PlaceState {}
-
-class PlaceLoaded extends PlaceState {
-  final List<String> places;
-
-  const PlaceLoaded(this.places);
-
-  @override
-  List<Object> get props => [places];
-}
-
-/// Bloc
 class PlaceBloc extends Bloc<PlaceEvent, PlaceState> {
-  PlaceBloc() : super(PlaceInitial()) {
-    on<FetchPlaces>(_onFetchPlaces);
+  final TfLRepository repository;
+
+  PlaceBloc(this.repository) : super(PlaceInitial()) {
+    on<FetchNearbyStops>(_onFetchNearbyStops);
+    on<FetchBusArrivals>(_onFetchBusArrivals);
   }
 
-  Future<void> _onFetchPlaces(FetchPlaces event, Emitter<PlaceState> emit) async {
+  Future<void> _onFetchNearbyStops(FetchNearbyStops event, Emitter<PlaceState> emit) async {
     emit(PlaceLoading());
-    await Future.delayed(Duration(seconds: 2)); // Simulating network call
-    emit(PlaceLoaded(['Place 1', 'Place 2', 'Place 3'])); // Simulated data
+    try {
+      final stops = await repository.getNearbyStops(event.latitude, event.longitude);
+      emit(StopsLoaded(stops));
+    } catch (e) {
+      emit(PlaceError(e.toString()));
+    }
+  }
+
+  Future<void> _onFetchBusArrivals(FetchBusArrivals event, Emitter<PlaceState> emit) async {
+    emit(PlaceLoading());
+    try {
+      final busArrivals = await repository.getBusArrivals(event.stopId);
+      emit(BusArrivalsLoaded(busArrivals));
+    } catch (e) {
+      emit(PlaceError(e.toString()));
+    }
   }
 }
