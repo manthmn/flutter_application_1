@@ -199,7 +199,7 @@ class _MapScreenState extends State<MapScreen> {
 
   Widget _buildBottomSheet(List<StopPoint> stops) {
     return DraggableScrollableSheet(
-      initialChildSize: 0.3,
+      initialChildSize: 0.4,
       minChildSize: 0.2,
       maxChildSize: 0.8,
       builder: (BuildContext context, ScrollController scrollController) {
@@ -236,11 +236,36 @@ class _MapScreenState extends State<MapScreen> {
                     controller: scrollController,
                     itemCount: stops.length,
                     itemBuilder: (context, index) {
-                      return ListTile(
-                        title: Text(stops[index].commonName!),
-                        onTap: () {
-                          BlocProvider.of<PlaceBloc>(context).add(FetchBusArrivals(stops[index].id!));
-                        },
+                      // Extract relevant data from StopPoint
+                      StopPoint stop = stops[index];
+                      String walkingDistance = "${stop.distance!.toStringAsFixed(0)}m Walk"; // Adjust as needed
+                      List<String> busRoutes = stop.lines.map((line) => line.name!).toList(); // Extract line names
+
+                      return Card(
+                        elevation: 2,
+                        margin: const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
+                        child: Padding(
+                          padding: const EdgeInsets.all(10.0),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                stop.commonName ?? "Unknown Stop",
+                                style: TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                              SizedBox(height: 5),
+                              Text(walkingDistance),
+                              SizedBox(height: 5),
+                              Text(
+                                busRoutes.join(", "),
+                                style: TextStyle(color: Colors.grey),
+                              ),
+                            ],
+                          ),
+                        ),
                       );
                     },
                   ),

@@ -26,15 +26,6 @@ class NearbyStops {
       page: json["page"],
     );
   }
-
-  Map<String, dynamic> toJson() => {
-        "\u0024type": type,
-        "centrePoint": centrePoint.map((x) => x).toList(),
-        "stopPoints": stopPoints.map((x) => x?.toJson()).toList(),
-        "pageSize": pageSize,
-        "total": total,
-        "page": page,
-      };
 }
 
 class StopPoint {
@@ -46,6 +37,7 @@ class StopPoint {
     required this.modes,
     required this.icsCode,
     required this.stopType,
+    required this.stationNaptan,
     required this.lines,
     required this.lineGroup,
     required this.lineModeGroups,
@@ -58,6 +50,7 @@ class StopPoint {
     required this.children,
     required this.lat,
     required this.lon,
+    required this.hubNaptanCode,
   });
 
   final String? type;
@@ -67,6 +60,7 @@ class StopPoint {
   final List<String> modes;
   final String? icsCode;
   final String? stopType;
+  final String? stationNaptan;
   final List<Line> lines;
   final List<LineGroup> lineGroup;
   final List<LineModeGroup> lineModeGroups;
@@ -79,6 +73,7 @@ class StopPoint {
   final List<dynamic> children;
   final double? lat;
   final double? lon;
+  final String? hubNaptanCode;
 
   factory StopPoint.fromJson(Map<String, dynamic> json) {
     return StopPoint(
@@ -89,6 +84,7 @@ class StopPoint {
       modes: json["modes"] == null ? [] : List<String>.from(json["modes"]!.map((x) => x)),
       icsCode: json["icsCode"],
       stopType: json["stopType"],
+      stationNaptan: json["stationNaptan"],
       lines: json["lines"] == null ? [] : List<Line>.from(json["lines"]!.map((x) => Line.fromJson(x))),
       lineGroup:
           json["lineGroup"] == null ? [] : List<LineGroup>.from(json["lineGroup"]!.map((x) => LineGroup.fromJson(x))),
@@ -106,30 +102,9 @@ class StopPoint {
       children: json["children"] == null ? [] : List<dynamic>.from(json["children"]!.map((x) => x)),
       lat: json["lat"],
       lon: json["lon"],
+      hubNaptanCode: json["hubNaptanCode"],
     );
   }
-
-  Map<String, dynamic> toJson() => {
-        "\u0024type": type,
-        "naptanId": naptanId,
-        "indicator": indicator,
-        "stopLetter": stopLetter,
-        "modes": modes.map((x) => x).toList(),
-        "icsCode": icsCode,
-        "stopType": stopType,
-        "lines": lines.map((x) => x?.toJson()).toList(),
-        "lineGroup": lineGroup.map((x) => x?.toJson()).toList(),
-        "lineModeGroups": lineModeGroups.map((x) => x?.toJson()).toList(),
-        "status": status,
-        "id": id,
-        "commonName": commonName,
-        "distance": distance,
-        "placeType": placeType,
-        "additionalProperties": additionalProperties.map((x) => x?.toJson()).toList(),
-        "children": children.map((x) => x).toList(),
-        "lat": lat,
-        "lon": lon,
-      };
 }
 
 class AdditionalProperty {
@@ -156,40 +131,29 @@ class AdditionalProperty {
       value: json["value"],
     );
   }
-
-  Map<String, dynamic> toJson() => {
-        "\u0024type": type,
-        "category": category,
-        "key": key,
-        "sourceSystemKey": sourceSystemKey,
-        "value": value,
-      };
 }
 
 class LineGroup {
   LineGroup({
     required this.type,
     required this.naptanIdReference,
+    required this.stationAtcoCode,
     required this.lineIdentifier,
   });
 
   final String? type;
   final String? naptanIdReference;
+  final String? stationAtcoCode;
   final List<String> lineIdentifier;
 
   factory LineGroup.fromJson(Map<String, dynamic> json) {
     return LineGroup(
       type: json["\u0024type"],
       naptanIdReference: json["naptanIdReference"],
+      stationAtcoCode: json["stationAtcoCode"],
       lineIdentifier: json["lineIdentifier"] == null ? [] : List<String>.from(json["lineIdentifier"]!.map((x) => x)),
     );
   }
-
-  Map<String, dynamic> toJson() => {
-        "\u0024type": type,
-        "naptanIdReference": naptanIdReference,
-        "lineIdentifier": lineIdentifier.map((x) => x).toList(),
-      };
 }
 
 class LineModeGroup {
@@ -210,12 +174,6 @@ class LineModeGroup {
       lineIdentifier: json["lineIdentifier"] == null ? [] : List<String>.from(json["lineIdentifier"]!.map((x) => x)),
     );
   }
-
-  Map<String, dynamic> toJson() => {
-        "\u0024type": type,
-        "modeName": modeName,
-        "lineIdentifier": lineIdentifier.map((x) => x).toList(),
-      };
 }
 
 class Line {
@@ -251,17 +209,6 @@ class Line {
       status: json["status"],
     );
   }
-
-  Map<String, dynamic> toJson() => {
-        "\u0024type": type,
-        "id": id,
-        "name": name,
-        "uri": uri,
-        "type": lineType,
-        "crowding": crowding?.toJson(),
-        "routeType": routeType,
-        "status": status,
-      };
 }
 
 class Crowding {
@@ -276,8 +223,4 @@ class Crowding {
       type: json["\u0024type"],
     );
   }
-
-  Map<String, dynamic> toJson() => {
-        "\u0024type": type,
-      };
 }
