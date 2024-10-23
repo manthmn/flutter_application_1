@@ -1,16 +1,16 @@
 class NearbyStops {
   NearbyStops({
-    required this.type,
-    required this.centrePoint,
-    required this.stopPoints,
-    required this.pageSize,
-    required this.total,
-    required this.page,
+    this.type,
+    this.centrePoint,
+    this.stopPoints,
+    this.pageSize,
+    this.total,
+    this.page,
   });
 
   final String? type;
-  final List<double> centrePoint;
-  final List<StopPoint> stopPoints;
+  final List<double>? centrePoint;
+  final List<StopPoint>? stopPoints;
   final int? pageSize;
   final int? total;
   final int? page;
@@ -30,47 +30,47 @@ class NearbyStops {
 
 class StopPoint {
   StopPoint({
-    required this.type,
-    required this.naptanId,
-    required this.indicator,
-    required this.stopLetter,
-    required this.modes,
-    required this.icsCode,
-    required this.stopType,
-    required this.stationNaptan,
-    required this.lines,
-    required this.lineGroup,
-    required this.lineModeGroups,
-    required this.status,
-    required this.id,
-    required this.commonName,
-    required this.distance,
-    required this.placeType,
-    required this.additionalProperties,
-    required this.children,
-    required this.lat,
-    required this.lon,
-    required this.hubNaptanCode,
+    this.type,
+    this.naptanId,
+    this.indicator,
+    this.stopLetter,
+    this.modes,
+    this.icsCode,
+    this.stopType,
+    this.stationNaptan,
+    this.lines,
+    this.lineGroup,
+    this.lineModeGroups,
+    this.status,
+    this.id,
+    this.commonName,
+    this.distance,
+    this.placeType,
+    this.additionalProperties,
+    this.children,
+    this.lat,
+    this.lon,
+    this.hubNaptanCode,
   });
 
   final String? type;
   final String? naptanId;
   final String? indicator;
   final String? stopLetter;
-  final List<String> modes;
+  final List<String>? modes;
   final String? icsCode;
   final String? stopType;
   final String? stationNaptan;
-  final List<Line> lines;
-  final List<LineGroup> lineGroup;
-  final List<LineModeGroup> lineModeGroups;
+  final List<Line>? lines;
+  final List<LineGroup>? lineGroup;
+  final List<LineModeGroup>? lineModeGroups;
   final bool? status;
   final String? id;
   final String? commonName;
   final double? distance;
   final String? placeType;
-  final List<AdditionalProperty> additionalProperties;
-  final List<dynamic> children;
+  final List<AdditionalProperty>? additionalProperties;
+  final List<dynamic>? children;
   final double? lat;
   final double? lon;
   final String? hubNaptanCode;
@@ -109,11 +109,11 @@ class StopPoint {
 
 class AdditionalProperty {
   AdditionalProperty({
-    required this.type,
-    required this.category,
-    required this.key,
-    required this.sourceSystemKey,
-    required this.value,
+    this.type,
+    this.category,
+    this.key,
+    this.sourceSystemKey,
+    this.value,
   });
 
   final String? type;
@@ -135,16 +135,16 @@ class AdditionalProperty {
 
 class LineGroup {
   LineGroup({
-    required this.type,
-    required this.naptanIdReference,
-    required this.stationAtcoCode,
-    required this.lineIdentifier,
+    this.type,
+    this.naptanIdReference,
+    this.stationAtcoCode,
+    this.lineIdentifier,
   });
 
   final String? type;
   final String? naptanIdReference;
   final String? stationAtcoCode;
-  final List<String> lineIdentifier;
+  final List<String>? lineIdentifier;
 
   factory LineGroup.fromJson(Map<String, dynamic> json) {
     return LineGroup(
@@ -158,14 +158,14 @@ class LineGroup {
 
 class LineModeGroup {
   LineModeGroup({
-    required this.type,
-    required this.modeName,
-    required this.lineIdentifier,
+    this.type,
+    this.modeName,
+    this.lineIdentifier,
   });
 
   final String? type;
   final String? modeName;
-  final List<String> lineIdentifier;
+  final List<String>? lineIdentifier;
 
   factory LineModeGroup.fromJson(Map<String, dynamic> json) {
     return LineModeGroup(
@@ -178,14 +178,14 @@ class LineModeGroup {
 
 class Line {
   Line({
-    required this.type,
-    required this.id,
-    required this.name,
-    required this.uri,
-    required this.lineType,
-    required this.crowding,
-    required this.routeType,
-    required this.status,
+    this.type,
+    this.id,
+    this.name,
+    this.uri,
+    this.lineType,
+    this.crowding,
+    this.routeType,
+    this.status,
   });
 
   final String? type;
@@ -213,7 +213,7 @@ class Line {
 
 class Crowding {
   Crowding({
-    required this.type,
+    this.type,
   });
 
   final String? type;

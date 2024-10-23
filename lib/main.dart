@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:stop_finder/map_screen.dart';
-import 'package:stop_finder/place_bloc.dart';
-import 'package:stop_finder/tfl_repository.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:stop_finder/place_bloc/place_bloc.dart';
+import 'package:stop_finder/repository/place_repository.dart';
+import 'package:stop_finder/screens/home_screen.dart';
 
 void main() {
   SystemChrome.setSystemUIOverlayStyle(
@@ -21,13 +21,13 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Map App',
+      title: 'Stop Finder',
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
       home: BlocProvider(
-        create: (context) => PlaceBloc(TfLRepository()), // Example coordinates for London
-        child: const MapScreen(),
+        create: (context) => PlaceBloc(PlaceRepository()),
+        child: const HomeScreen(),
       ),
       debugShowCheckedModeBanner: false,
     );
