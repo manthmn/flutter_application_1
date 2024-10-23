@@ -1,3 +1,3 @@
-# flutter_application_1
+# stop_finder
 
 A new Flutter project.

@@ -1,5 +1,5 @@
-name: flutter_application_1
-description: A new Flutter project.
+name: stop_finder
+description: A App to find nearby stops and real time status for transport.
 publish_to: 'none'
 version: 0.1.0
 
@@ -18,12 +18,18 @@ dependencies:
   http: ^1.2.2
   shared_preferences: ^2.3.2
   location: ^7.0.1
-  # signalr_client: ^0.1.2
+  shimmer: ^3.0.0
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^2.0.0
+  flutter_launcher_icons: ^0.14.1
+
+flutter_icons:
+  android: true
+  ios: true
+  image_path: "assets/app_icon.png"
 
 flutter:
   uses-material-design: true

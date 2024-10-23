@@ -13,20 +13,21 @@ class PlaceLoading extends PlaceState {}
 
 class StopsLoaded extends PlaceState {
   final List<StopPoint> stops;
+  final Map<String, List<VehicleDetails>> stopVehicleMap;
 
-  const StopsLoaded(this.stops);
+  const StopsLoaded({required this.stops, required this.stopVehicleMap});
 
   @override
-  List<Object> get props => [stops];
+  List<Object> get props => [stops, stopVehicleMap];
 }
 
 class BusArrivalsLoaded extends PlaceState {
-  final List<BusArrival> busArrivals;
+  final Map<String, List<VehicleDetails>> stopVehicleMap;
 
-  const BusArrivalsLoaded(this.busArrivals);
+  const BusArrivalsLoaded(this.stopVehicleMap);
 
   @override
-  List<Object> get props => [busArrivals];
+  List<Object> get props => [stopVehicleMap];
 }
 
 class PlaceError extends PlaceState {

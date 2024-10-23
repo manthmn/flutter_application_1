@@ -1,7 +1,7 @@
 import 'dart:convert';
 
-import 'package:flutter_application_1/bus_arrival.dart';
-import 'package:flutter_application_1/nearby_stops.dart';
+import 'package:stop_finder/nearby_stops.dart';
+import 'package:stop_finder/vehicle_details.dart';
 import 'package:http/http.dart' as http;
 
 class TfLRepository {
@@ -19,12 +19,12 @@ class TfLRepository {
     }
   }
 
-  Future<List<BusArrival>> getBusArrivals(String stopPointId) async {
+  Future<List<VehicleDetails>> getBusArrivals(String stopPointId) async {
     final response = await http.get(Uri.parse('$_baseUrl/StopPoint/$stopPointId/Arrivals'));
 
     if (response.statusCode == 200) {
       final data = json.decode(response.body);
-      return (data as List).map((e) => BusArrival.fromJson(e)).toList();
+      return (data as List).map((e) => VehicleDetails.fromJson(e)).toList();
     } else {
       throw Exception('Failed to load bus arrivals');
     }

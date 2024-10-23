@@ -17,11 +17,18 @@ class FetchNearbyStops extends PlaceEvent {
   List<Object> get props => [latitude, longitude];
 }
 
-class FetchBusArrivals extends PlaceEvent {
-  final String stopId;
+// class FetchBusArrivals extends PlaceEvent {
+//   final String stopId;
 
-  const FetchBusArrivals(this.stopId);
+//   const FetchBusArrivals(this.stopId);
+
+//   @override
+//   List<Object> get props => [stopId];
+// }
+
+class FetchBusArrivals extends PlaceEvent {
+  const FetchBusArrivals();
 
   @override
-  List<Object> get props => [stopId];
+  List<Object> get props => [];
 }
