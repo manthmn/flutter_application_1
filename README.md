@@ -11,7 +11,18 @@ Geolocation: Automatically fetches and displays nearby bus stops based on your c
 Stop Details: View detailed information about a selected bus stop, including bus routes and arrival times.
 
 <h3>Screenshots</h3>
-[Add some screenshots of your app here]
+
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/87e07435-a7fd-42df-9f1b-4c1e04c1a432" width="30%" />
+  <img src="https://github.com/user-attachments/assets/434e8054-c121-434a-8068-3ff398232cac" width="30%" />
+  <img src="https://github.com/user-attachments/assets/2cbfbd91-4f17-456c-90eb-228144ab94a8" width="30%" />
+</p>
+
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/d7fbbf77-a150-44fb-9ed6-08678ecffb87" width="30%" />
+  <img src="https://github.com/user-attachments/assets/b6b38ec4-1a32-4c6c-828c-72891a6b68b5" width="30%" />
+  <img src="https://github.com/user-attachments/assets/314a1882-d8f2-40ad-b9cb-318e584c1209" width="30%" />
+</p>
 
 <h3>Installation</h3>
 
@@ -68,3 +79,7 @@ lib/
 `http`
 `location`
 `logger`
+
+<h3>Contact</h3>
+
+For any questions or suggestions, feel free to contact Manthan Nagina at manthannagina@gmail.com.
