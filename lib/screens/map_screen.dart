@@ -58,24 +58,21 @@ class MapScreen extends StatelessWidget {
               child: const MainMarker(),
             ),
             // Add markers for each stop point
-            if (_state is StopsLoaded || _state is StopsVehicleLoaded || _state is SelectedStopLoaded)
-              ...((_state is StopsLoaded
-                      ? _state.stops
-                      : _state is StopsVehicleLoaded
-                          ? _state.stops
-                          : (_state as SelectedStopLoaded).stops)
+            if (_state is StopsLoaded ||
+                _state is StopsVehicleLoaded ||
+                _state is SelectedStopLoaded ||
+                _state is SelectedStopVehicleLoaded)
+              ...((_state.stops)
                   .asMap()
                   .entries
                   .where((entry) => entry.value.lat != null && entry.value.lon != null)
                   .map((entry) {
                 int index = entry.key;
                 StopPoint stop = entry.value;
-                double pointerSize = ((_state is StopsLoaded || _state is StopsVehicleLoaded)
-                            ? null
-                            : (_state as SelectedStopLoaded).selectedStopIndex) ==
-                        index
-                    ? 36
-                    : 28;
+                double pointerSize =
+                    ((_state is StopsLoaded || _state is StopsVehicleLoaded) ? null : _state.selectedStopIndex) == index
+                        ? 36
+                        : 28;
 
                 return Marker(
                   width: 80.0,
@@ -88,6 +85,7 @@ class MapScreen extends StatelessWidget {
                       InkWell(
                         // Handle marker tap to fetch selected stop details
                         onTap: () {
+                          _placeBloc.add(StopContinuousUpdates());
                           _placeBloc.add(FetchSelectedStopDetails(index));
                         },
                         child: Container(

@@ -85,7 +85,7 @@ class _StopBottomSheetState extends State<StopBottomSheet> {
                         return buildShimmer(); // Show loading shimmer
                       } else if (widget.state is StopsLoaded || widget.state is StopsVehicleLoaded) {
                         return _buildStopListView(scrollController, widget.state);
-                      } else if (widget.state is SelectedStopLoaded) {
+                      } else if (widget.state is SelectedStopLoaded || widget.state is SelectedStopVehicleLoaded) {
                         return _buildStopDetailView(
                           scrollController,
                           widget.state.stops[widget.state.selectedStopIndex],
@@ -348,7 +348,9 @@ class _StopBottomSheetState extends State<StopBottomSheet> {
                   child: IconButton(
                     icon: const Icon(Icons.arrow_back_ios_new_rounded, color: Colors.black, size: 20, weight: 10),
                     onPressed: () {
-                      widget.placeBloc.add(BackToNearbyStops());
+                      // widget.placeBloc.add(BackToNearbyStops());
+                      widget.placeBloc.add(StopContinuousUpdatesSelected());
+                      widget.placeBloc.add(FetchStops());
                     },
                   ),
                 ),
@@ -413,7 +415,7 @@ class _StopBottomSheetState extends State<StopBottomSheet> {
                               Text(vehicle.direction ?? ''),
                             ],
                           ),
-                          Text('${minutes == 0 ? 'Due' : minutes} min'),
+                          Text(minutes == 0 ? 'Due' : '$minutes min'),
                         ],
                       ),
                       Row(

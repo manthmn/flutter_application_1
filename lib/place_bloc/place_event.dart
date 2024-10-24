@@ -17,7 +17,15 @@ class FetchNearbyStops extends PlaceEvent {
   List<Object> get props => [latitude, longitude];
 }
 
+class FetchStops extends PlaceEvent {}
+
 class FetchBatchStopDetails extends PlaceEvent {} // Fetch details in batch for stops
+
+class BackToNearbyStops extends PlaceEvent {} // Event to go back to nearby stops
+
+class StartContinuousUpdates extends PlaceEvent {} // Start continuous location updates
+
+class StopContinuousUpdates extends PlaceEvent {} // Stop continuous location updates
 
 class FetchSelectedStopDetails extends PlaceEvent {
   final int stopIndex; // Index of the selected stop
@@ -28,8 +36,22 @@ class FetchSelectedStopDetails extends PlaceEvent {
   List<Object> get props => [stopIndex];
 }
 
-class BackToNearbyStops extends PlaceEvent {} // Event to go back to nearby stops
+class StartContinuousUpdatesSelected extends PlaceEvent {
+  final int stopIndex; // Index of the selected stop
 
-class StartContinuousUpdates extends PlaceEvent {} // Start continuous location updates
+  const StartContinuousUpdatesSelected(this.stopIndex);
 
-class StopContinuousUpdates extends PlaceEvent {} // Stop continuous location updates
+  @override
+  List<Object> get props => [stopIndex];
+} // Start continuous location updates for selected
+
+class StopContinuousUpdatesSelected extends PlaceEvent {} // Stop continuous location updates for selected
+
+class FetchSingleStop extends PlaceEvent {
+  final int stopIndex; // Index of the selected stop
+
+  const FetchSingleStop(this.stopIndex);
+
+  @override
+  List<Object> get props => [stopIndex];
+} // Start single location updates for selected

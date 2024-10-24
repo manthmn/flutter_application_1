@@ -42,6 +42,17 @@ class SelectedStopLoaded extends PlaceState {
   List<Object> get props => [stops, stopVehicleMap, selectedStopIndex];
 }
 
+class SelectedStopVehicleLoaded extends PlaceState {
+  final List<StopPoint> stops;
+  final Map<String, List<VehicleDetails>> stopVehicleMap;
+  final int selectedStopIndex; // Index of the selected stop
+
+  const SelectedStopVehicleLoaded({required this.stops, required this.stopVehicleMap, required this.selectedStopIndex});
+
+  @override
+  List<Object> get props => [stops, stopVehicleMap, selectedStopIndex];
+}
+
 class PlaceError extends PlaceState {
   final String message; // Error message
 
